@@ -12,6 +12,7 @@
     - "imagemagick"
     - "libsqlite3-dev"
     - "gimp"
+    - "inkscape"
 
 - name: Install packages required to build ruby (Debian).
   apt: "name={{ item }} state=present"
