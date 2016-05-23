@@ -1,0 +1,8 @@
+- name: Install software-properties-common
+  apt: name=software-properties-common update_cache=yes state=latest
+
+- name: Add repository
+  apt_repository: repo='ppa:tmate.io/archive'
+
+- name: Install tmate
+  apt: name=tmate update_cache=yes state=latest

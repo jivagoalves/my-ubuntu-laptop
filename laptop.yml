@@ -1,0 +1,37 @@
+---
+- hosts: local
+
+  vars:
+    spotify:
+      apt_key:
+        id: BBEBDCB318AD50EC6865090613B00F1FD2C19886
+
+    # for roles/ANXS.scala/tasks/binaries.yml
+    scala_versions: ["2.11.8"]
+    scala_default_version: "2.11.8"
+
+  roles:
+    - devtools
+    - role: ANXS.postgresql }
+    - role: geerlingguy.git }
+    - { role: cmprescott.chrome, become: yes }
+    - role: jgrowl.hipchat }
+    - spotify
+    - role: trinitronx.tmux
+    - tmate
+    - role: williamyeh.oracle-java
+    - role: softasap.sa-communication-tools
+    - role: JasonGiedymin.sbt
+
+  tasks:
+  - name: Install xournal
+    apt: package=xournal
+         state=installed
+
+  - include: roles/ANXS.scala/tasks/binaries.yml
+
+  post_tasks:
+    - file: src={{ item.src }} dest={{ item.dest }} state=link follow=yes
+      with_items:
+        - { src: '/usr/lib/jvm/default-java/jre/lib/amd64/libnpjp2.so',
+            dest: '/usr/lib/firefox-addons/plugins/libnpjp2.so' }

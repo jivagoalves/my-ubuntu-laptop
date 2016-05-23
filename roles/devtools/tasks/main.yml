@@ -1,0 +1,34 @@
+- name: Install Dev Tools
+  action: apt pkg="{{item}}" state=present update_cache=no
+  with_items:
+    - "build-essential"
+    - "cmake"
+    - "vim-gnome"
+    - "libpq-dev"
+    - "phantomjs"
+    - "shutter"
+    - "expect-dev"
+    - "pdftk"
+    - "imagemagick"
+    - "libsqlite3-dev"
+    - "gimp"
+
+- name: Install packages required to build ruby (Debian).
+  apt: "name={{ item }} state=present"
+  with_items:
+    - zlib1g-dev
+    - libssl-dev
+    - libyaml-dev
+    - libreadline6-dev
+    - zlib1g-dev
+    - libncurses5-dev
+    - libffi-dev
+    - libgdbm3
+    - libgdbm-dev
+  when: ansible_os_family == 'Debian'
+
+- name: Install packages required for rails (Debian).
+  apt: "name={{ item }} state=present"
+  with_items:
+    - nodejs
+  when: ansible_os_family == 'Debian'

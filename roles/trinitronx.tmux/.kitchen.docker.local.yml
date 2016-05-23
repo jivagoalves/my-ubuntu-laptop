@@ -1,0 +1,57 @@
+## If you want to use one of the kitchen-docker* drivers...
+## You should rename this file to: .kitchen.local.yml
+## OR:
+##   export KITCHEN_LOCAL_YAML=.kitchen.docker.local.yml
+## Hint: Make sure you have kitchen-docker and kitchen-docker-api gems installed
+## Then set DOCKER_HOST=tcp://my-docker-host.example.com:4243
+---
+## driver name: docker is for portertech/kitchen-docker
+driver:
+  name: docker
+driver_config:
+  hostname: kitchen
+#  use_sudo: true
+  socket: <%= ENV['DOCKER_HOST'] || 'unix:///var/run/docker.sock' %>
+#  socket: tcp://localhost:4243
+#  require_chef_omnibus: true
+#  hostname: kitchen
+
+platforms:
+#- name: centos-5.10
+#  driver_config:
+#    image: cpuguy83/centos
+#    platform: centos
+#    provision_command:
+#      - curl -L https://www.opscode.com/chef/install.sh | bash
+#      - yum -y install make gcc which bash tar cronie
+- name: centos-6.4
+  driver_config:
+    image: learndocker/centos
+    platform: centos
+    provision_command: &1
+      - curl -L https://www.opscode.com/chef/install.sh | bash
+      - curl -Ls https://raw.githubusercontent.com/neillturner/omnibus-ansible/master/ansible_install.sh | bash
+
+- name: centos-6.5
+  driver_config:
+    image: learndocker/centos
+    platform: centos
+    provision_command: *1
+- name: centos-7
+  driver_config:
+    image: "trinitronx/ansible-base:stable-centos7"
+    platform: centos
+    provision_command:
+      - curl -L https://www.opscode.com/chef/install.sh | bash
+## Precise Pangolin (LTS)
+- name: ubuntu-12.04
+  driver_config:
+    provision_command: *1
+## Trusty Tahr LTS
+- name: ubuntu-14.04
+  driver_config:
+    provision_command: *1
+## Vivid Vervet ## EOL January 2016
+- name: ubuntu-15.04
+  driver_config:
+    provision_command: *1

@@ -1,0 +1,52 @@
+---
+driver:
+    name: vagrant
+
+provisioner:
+#  ansible_platform: ubuntu
+  name: ansible_playbook
+#  roles_path:
+  hosts: test-kitchen
+  require_ansible_repo: false
+  require_ansible_omnibus: true
+  ansible_omnibus_url: https://raw.githubusercontent.com/neillturner/omnibus-ansible/17e7f9cac9ca1163324ddf6ec3bd090a31e9719a/ansible_install.sh
+  require_chef_for_busser: true
+  require_ruby_for_busser: false
+  ansible_verbose: true
+  ansible_verbosity: 2
+  ansible_extra_flags: <%= ENV['ANSIBLE_EXTRA_FLAGS'] %>
+  sudo: true
+  extra_vars:
+    a: b
+
+platforms:
+  ## https://wiki.ubuntu.com/Releases
+  ## http://www.ubuntu.com/info/release-end-of-life
+  ## - name: ubuntu-10.04 # lucid LTS
+  - name: ubuntu-12.04 # precise LTS
+  ## - name: ubuntu-13.10 # saucy ## EOL July 17, 2014
+  - name: ubuntu-14.04 # trusty LTS
+  ## - name: ubuntu-14.10 # utopic  ## EOL July 23, 2015
+  - name: ubuntu-15.04 # vivid ## EOL January 2016
+  ## - name: ubuntu-15.10 # wily ## EOL July 2016 ## No bento box yet!
+  ## - name: ubuntu-16.04 # xenial LTS ## No bento box yet!
+  # - name: centos-5.10 # TODO: NOT TESTED YET... unsure if kitchen-ansible works yet...
+  - name: centos-6.4
+  - name: centos-6.5
+  - name: centos-7.0
+  # - name: nocm_centos-6.5
+  #   driver_plugin: vagrant
+  #   driver_config:
+  #     box: nocm_centos-6.5
+  #     box_url: http://puppet-vagrant-boxes.puppetlabs.com/centos-65-x64-virtualbox-nocm.box
+      # network:
+      #  - ['forwarded_port', {guest: 8080, host: 8080}]
+      #  - [ 'private_network', { ip: '192.168.33.11' } ]
+
+suites:
+ - name: default
+ - name: kitchen-user
+   provisioner:
+     extra_vars:
+       ansible_ssh_user: kitchen
+

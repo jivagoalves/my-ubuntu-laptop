@@ -1,0 +1,9 @@
+- src: ANXS.postgresql
+- src: geerlingguy.git
+- src: cmprescott.chrome
+- src: jgrowl.hipchat
+- src: trinitronx.tmux
+- src: williamyeh.oracle-java
+- src: softasap.sa-communication-tools
+- src: ANXS.scala
+- src: JasonGiedymin.sbt
