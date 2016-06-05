@@ -13,6 +13,7 @@
     - "libsqlite3-dev"
     - "gimp"
     - "inkscape"
+    - "redshift"
 
 - name: Install packages required to build ruby (Debian).
   apt: "name={{ item }} state=present"
