@@ -7,3 +7,4 @@
 - src: softasap.sa-communication-tools
 - src: ANXS.scala
 - src: JasonGiedymin.sbt
+- src: geerlingguy.redis

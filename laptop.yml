@@ -22,6 +22,7 @@
     - role: williamyeh.oracle-java
     - role: softasap.sa-communication-tools
     - role: JasonGiedymin.sbt
+    - role: geerlingguy.redis
 
   tasks:
   - name: Install xournal
