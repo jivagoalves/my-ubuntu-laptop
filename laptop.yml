@@ -12,12 +12,12 @@
 
   roles:
     - devtools
-    - role: ANXS.postgresql }
-    - role: geerlingguy.git }
+    - role: ANXS.postgresql
+    - role: geerlingguy.git
     - { role: cmprescott.chrome, become: yes }
-    - role: jgrowl.hipchat }
+    - role: jgrowl.hipchat
     - spotify
-    - role: trinitronx.tmux
+    - { role: trinitronx.tmux, tmux_users: ["jivago"] }
     - tmate
     - role: williamyeh.oracle-java
     - role: softasap.sa-communication-tools
