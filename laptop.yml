@@ -2,6 +2,16 @@
 - hosts: local
 
   vars:
+    users: ["jivago"]
+
+    rbenv:
+      env: user
+      version: v1.0.0
+      ruby_version: 2.3.1
+    rbenv_users: '{{ users }}'
+
+    tmux_users: '{{ users }}'
+
     spotify:
       apt_key:
         id: BBEBDCB318AD50EC6865090613B00F1FD2C19886
@@ -12,12 +22,13 @@
 
   roles:
     - devtools
+    - zzet.rbenv
     - role: ANXS.postgresql
     - role: geerlingguy.git
     - { role: cmprescott.chrome, become: yes }
     - role: jgrowl.hipchat
     - spotify
-    - { role: trinitronx.tmux, tmux_users: ["jivago"] }
+    - role: trinitronx.tmux
     - tmate
     - role: williamyeh.oracle-java
     - role: softasap.sa-communication-tools
