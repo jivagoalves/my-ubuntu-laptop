@@ -1,3 +1,4 @@
+- src: zzet.rbenv
 - src: ANXS.postgresql
 - src: geerlingguy.git
 - src: cmprescott.chrome
