@@ -13,7 +13,7 @@
     - "libsqlite3-dev"
     - "gimp"
     - "inkscape"
-    - "redshift"
+    - "redshift-gtk"
     - "npm"
 
 - name: Install packages required to build ruby (Debian).
