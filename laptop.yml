@@ -6,7 +6,7 @@
 
     rbenv:
       env: user
-      version: v1.0.0
+      version: v1.1.0
       ruby_version: 2.3.1
     rbenv_users: '{{ users }}'
 
